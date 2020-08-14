@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Info.AddPage" Title="Добавить">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10,10,0,0">
+                <Label HorizontalOptions="Center" Text="Наименование средства измерения" />
+                <Entry Text="{Binding InstrumentName}" />
+                <Label HorizontalOptions="Center" Text="Тип средств измерения" />
+                <Entry Text="{Binding InstrumentType}" />
+                <Label HorizontalOptions="Center" Text="Класс точн" />
+                <Entry Text="{Binding AccuracyClassInstrument}" />
+                <Label HorizontalOptions="Center" Text="Нижний диапозон измерения" />
+                <Entry Text="{Binding MinValue}" />
+                <Label HorizontalOptions="Center" Text="Верхний диапозон измерения" />
+                <Entry Text="{Binding MaxValue}" />
+                <Label HorizontalOptions="Center" Text="Единицы измерения" />
+                <Entry Text="{Binding UnitValue}" />
+                <Label HorizontalOptions="Center" Text="Заводской номер" />
+                <Entry Text="{Binding FactoryNumber}" />
+                <Label HorizontalOptions="Center" Text="Период поверки" />
+                <Entry Text="{Binding PeriodCheck}" />
+                <Label HorizontalOptions="Center" Text="Место установки" />
+                <Entry Text="{Binding PlaceInstrument}" />
+                <Label HorizontalOptions="Center" Text="Позиция прибора" />
+                <Entry Text="{Binding PositionInstrument}" />
+                <Label HorizontalOptions="Center" Text="Дата последней проверки" />
+                <DatePicker Date="{Binding LastCheckDate}" />
+                <Label HorizontalOptions="Center" Text="Этаж" />
+                <Entry Text="{Binding Floor}" />
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Button Text="Добавить" WidthRequest="80"  Command="{Binding AddButtonCommand}" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

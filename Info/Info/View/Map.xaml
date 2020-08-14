@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:Info;assembly=Info"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             x:Class="Info.Map" Title="Карта(Тут этаж ?)">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BackgroundColorConverter x:Key="BackgroundColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Image  WidthRequest="800" HeightRequest="500"  x:Name="ImageMapName" >
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Style.Triggers>
+                                    <DataTrigger TargetType="Image" Binding="{Binding ImageMap}" Value="third">
+                                        <Setter Property="Source" Value="floor3.png"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding ImageMap}" Value="reb">
+                                        <Setter Property="Source" Value="Reboylernaya.png"/>
+                                    </DataTrigger>
+
+                                    <DataTrigger TargetType="Image" Binding="{Binding ImageMap}" Value="forth">
+                                        <Setter Property="Source" Value="floor4.png"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding ImageMap}" Value="five">
+                                        <Setter Property="Source" Value="floor5.png"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Image" Binding="{Binding ImageMap}" Value="six">
+                                        <Setter Property="Source" Value="floor6.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <!--FlowItemTappedCommand="{Binding ItemTappedCommand}" FlowLastTappedItem="{Binding LastTappedItem}"-->
+                    <flv:FlowListView FlowColumnCount="27" x:Name="FlowListViewName"  RowHeight="25" Margin="70,5,95,0"   SeparatorVisibility="None" HasUnevenRows="false"
+	                        FlowItemsSource="{Binding Table}"  FlowLastTappedItem="{Binding SelectedLocation}" >
+                        <flv:FlowListView.FlowColumnTemplate>
+                            <DataTemplate>
+                                <Label x:Name="cell" Margin="2" WidthRequest="25" Padding="0" HeightRequest="25" 
+                                       BackgroundColor="{Binding Source={x:Reference FlowListViewName},Path=FlowLastTappedItem,
+                                                        Converter={StaticResource BackgroundColorConverter},
+                                                        ConverterParameter={x:Reference cell}}" Opacity="{Binding Opacity}"
+                                       />
+                            </DataTemplate>
+                        </flv:FlowListView.FlowColumnTemplate>
+                    </flv:FlowListView>
+                </Grid>
+                <StackLayout Grid.Column="1">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Этаж:" FontSize="22" TextColor="Black"/>
+                        <Label Text="{Binding Floor}" FontSize="22" TextColor="Black"/>
+                    </StackLayout>
+                    <Button WidthRequest="80" FontSize="8" Text="Добавить/Изменить" Command="{Binding AddEditCommand}"/>
+                    <Button WidthRequest="80" FontSize="8" Text="Назад" Command="{Binding BackCommand}"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
